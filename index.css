@@ -57,10 +57,10 @@ button{
     border-bottom: 1px solid rgb(20, 20, 20);
 }
 
-#green:hover{
+/* #green:hover{
     transition: 400ms;
     filter: drop-shadow(-5px -5px 10px lightgreen);
-}
+} */
 
 
 #red{
@@ -73,10 +73,10 @@ button{
     border-bottom: 1px solid rgb(20, 20, 20);
 }
 
-#red:hover{
+/* #red:hover{
     transition: 400ms;
     filter: drop-shadow(5px -5px 10px rgb(214, 77, 77));
-}
+} */
 
 #yellow{
     background-color: yellow;
@@ -87,10 +87,10 @@ button{
     border-right: 1px solid rgb(20, 20, 20);
 }
 
-#yellow:hover{
+/* #yellow:hover{
     transition: 400ms;
     filter: drop-shadow(-5px 5px 10px lightyellow);
-}
+} */
 
 #blue{
     background-color: blue;
@@ -103,10 +103,10 @@ button{
 }
 
 
-#blue:hover{
+/* #blue:hover{
     transition: 400ms;
     filter: drop-shadow(5px 5px 10px lightblue);
-}
+} */
 
 #circle{
     background-color: rgb(20, 20, 20);
