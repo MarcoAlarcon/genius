@@ -1,65 +1,59 @@
-$("button").click( function() {
-    $("#blue").trigger("click")
+$("button").click(function () {
+    var cores = []
+    var gameOver = false
+    for (i = 0; i < 1; i++) {
+        if (cores.length > 0){
+            console.log(cores)
+            sequencia(cores)
+        }
+        adicionaCor(cores)
+        console.log(cores)
+        gameOver = true
+    }
 })
 
-$("#green").click( () => {
-    $("#green").css("background-color","rgb(2,170,2)")
+
+function adicionaCor(array) {
+    const cores = ['green', 'red', 'blue', 'yellow']
+
+    const botao = Math.floor(Math.random() * 3)
+
+    $(`#${cores[botao]}`).trigger("click")
+
+    array.push(cores[botao])
+
+    return array
+}
+
+function sequencia(array) {
+    if (array.length > 0) {
+        array.forEach((cor) => {
+            setTimeout(() => {
+                $(`#${cor}`).trigger("click")
+            }, 1000)
+        })
+    }
+}
+
+function mudaCores(seletor, corBase, corBrilho) {
+    $(seletor).css("background-color", corBrilho)
     setTimeout(() => {
-        $("#green").css("background-color","green")
-    },1000)
-})
+        $(seletor).css("background-color", corBase)
+    }, 1000)
+}
 
-$("#red").click( () => {
-    $("#red").css("background-color","rgb(255,70,70)")
-    setTimeout(() => {
-        $("#red").css("background-color","red")
-    },1000)
-})
+$("#green").click(() => mudaCores("#green", "green", "rgb(2,170,2)"))
+$("#red").click(() => mudaCores("#red", "red", "rgb(255,70,70)"))
+$("#blue").click(() => mudaCores("#blue", "blue", "rgb(70,70,255)"))
+$("#yellow").click(() => mudaCores("#yellow", "yellow", "rgb(255,255,150)"))
 
-$("#blue").click( () => {
-    $("#blue").css("background-color","rgb(70,70,255)")
-    setTimeout(() => {
-        $("#blue").css("background-color","blue")
-    },1000)
-})
-
-$("#yellow").click( () => {
-    $("#yellow").css("background-color","rgb(255,255,150)")
-    setTimeout(() => {
-        $("#yellow").css("background-color","yellow")
-    },1000)
-})
-
-
-
-// function start(){
-//     roundMaquina()
-// }
-
-// function roundMaquina(){
-
-//     $('#green').trigger("click")
-//     // let green = document.getElementById('green')
-//     // const mouseover = new Event('mouseover')
-//     // const mouseout = new Event('mouseout')
-
-//     // green.addEventListener("mouseover", () => {
-//     //     green.style.transition = '400'
-//     //     green.style.backgroundColor = 'lightgreen'
-//     // })
-
-//     // green.addEventListener("mouseout", () => {
-//     //     green.style.backgroundColor = 'green'
-//     // })
-
-//     // green.dispatchEvent(mouseover)
-//     // // setInterval( () => {
-//     // //     green.dispatchEvent(mouseout)
-//     // // }, 1000)
-// }
-
-// function geraCores(Cores){
-//     for (i = 0; i < Cores; i++) {
-//         console.log('teste')
+// function vezDaMaquina(round,array){
+//     const cores = ['green','red','blue','yellow']
+//     for (i = 0; i<round; i++) {
+//         const botao = Math.floor(Math.random()*3) 
+//         console.log(botao)
+//         $(`#${cores[botao]}`).trigger("click")
+//         array.push(cores[botao])
 //     }
+//     return array
 // }
