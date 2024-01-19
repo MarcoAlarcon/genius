@@ -1,38 +1,59 @@
-$("button").click(function () {
-    var cores = []
+$("button").click( async function () {
+    var cores = ["green","green","red"]
     var gameOver = false
-    for (i = 0; i < 1; i++) {
-        if (cores.length > 0){
-            console.log(cores)
-            sequencia(cores)
-        }
-        adicionaCor(cores)
-        console.log(cores)
-        gameOver = true
-    }
+    console.log('comecou')
+    await sequencia(cores)
+    console.log('adiciona cor')
+    adicionaCor(cores)
+    console.log(cores)
+    console.log('finalizado')
+    // for (i = 0; i < 3; i++) {
+    //     if (cores.length > 0){
+    //         await sequencia(cores)
+    //     }
+    //     adicionaCor(cores)
+    //     console.log(cores)
+    //     console.log('----')
+    //     await sleep(5)
+    //     gameOver = true
+    // }
 })
 
 
 function adicionaCor(array) {
     const cores = ['green', 'red', 'blue', 'yellow']
 
-    const botao = Math.floor(Math.random() * 3)
+    const botao = Math.floor(Math.random() * 4)
 
     $(`#${cores[botao]}`).trigger("click")
 
     array.push(cores[botao])
-
+    
     return array
 }
 
-function sequencia(array) {
-    if (array.length > 0) {
-        array.forEach((cor) => {
+//  async function sequencia(array) {
+//     array.forEach((cor,i) => {
+//         setTimeout(() => {
+//             $(`#${cor}`).trigger("click")
+//         }, i*1200)
+//     })
+// }
+
+async function sequencia(array) {
+    return new Promise( (resolve) => {
+        array.forEach((cor,i) => {
             setTimeout(() => {
+                console.log(array)
                 $(`#${cor}`).trigger("click")
-            }, 1000)
+            }, i*1500)
+            setTimeout(() => {
+                if (i === array.length-1){
+                    resolve()
+                }
+            },array.length*1500)
         })
-    }
+    })
 }
 
 function mudaCores(seletor, corBase, corBrilho) {
@@ -40,6 +61,11 @@ function mudaCores(seletor, corBase, corBrilho) {
     setTimeout(() => {
         $(seletor).css("background-color", corBase)
     }, 1000)
+}
+
+
+async function sleep(seconds){
+    return new Promise((resolve)=> setTimeout(resolve, seconds * 1000))
 }
 
 $("#green").click(() => mudaCores("#green", "green", "rgb(2,170,2)"))
